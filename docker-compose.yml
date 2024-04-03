@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  be-service:
+    build:
+      context: ./be
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - NODE_ENV=development
+    volumes:
+      - ./be:/app
+      - /app/node_modules
+    image: be-service
+    container_name: be-service
+    tty: true
+    networks:
+      - default
+
+  fe-service:
+    container_name: fe-service
+    image: fe-service
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./fe:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - default
+    
+
+      

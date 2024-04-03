@@ -1,0 +1,14 @@
+{
+  "name": "nestjs-docker",
+  "version": "1.0.0",
+  "description": "Dockerized fullstack nestjs, nextjs, postgresql and nginx",
+  "scripts": {
+    "build:back": "docker-compose build be-service",
+    "build:front": "docker-compose build fe-service",
+    "start:back": "docker-compose up be-service --renew-anon-volumes",
+    "start:front": "docker-compose up fe-service --renew-anon-volumes",
+    "clean": "docker-compose down -v"
+  },
+  "author": "",
+  "license": "ISC"
+}
